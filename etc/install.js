@@ -20,7 +20,7 @@ unziper.unzip(  tmp + "/ROOT.war",  tmp );
 
 log.add("3. REPLACE LIBS");
 var files = new FileUtils();
-files.deleteMatch( web + "/lib/entermedia-ooffice*.jar");
+files.deleteMatch( web + "/lib/extension-ooffice*.jar");
 files.deleteMatch( web + "/lib/json-*.jar");
 files.deleteMatch( web + "/lib/commond-cli-*.jar");
 files.deleteMatch( web + "/lib/jodconverter-*.jar");
@@ -29,7 +29,7 @@ files.deleteMatch( web + "/lib/jurt-*.jar");
 files.deleteMatch( web + "/lib/ridl-*.jar");
 files.deleteMatch( web + "/lib/unoil-*.jar");
 
-files.copyFileByMatch( tmp + "/WEB-INF/lib/entermedia-ooffice*.jar", web + "/lib/");
+files.copyFileByMatch( tmp + "/WEB-INF/lib/extension-ooffice*.jar", web + "/lib/");
 files.copyFileByMatch( tmp + "/WEB-INF/lib/common-cli*.jar", web + "/lib/");
 files.copyFileByMatch( tmp + "/WEB-INF/lib/jodconverter-*.jar", web + "/lib/");
 files.copyFileByMatch( tmp + "/WEB-INF/lib/juh-*.jar", web + "/lib/");
