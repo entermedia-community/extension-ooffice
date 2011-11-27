@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="default" name="entermedia-ooffice">
+<project basedir="." default="default" name="extension-ooffice">
 
   <target name="default" depends="clean, update-dependencies, compile, jar, deploy"/>
    <target name="dependency" depends="default"/>
