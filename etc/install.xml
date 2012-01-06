@@ -70,7 +70,12 @@ files.copyFileByMatch( tmp + "/WEB-INF/lib/unoil-*.jar", web + "/lib/");
   <target name="upgrade">
   	<echo>Delete old libs</echo>
 	<mkdir dir="./lib"/>
-    <delete>
+
+  	<delete>
+      <fileset dir="./lib" includes="extension-ooffice**.jar"/>
+    </delete>
+
+  	<delete>
       <fileset dir="./lib" includes="json-**.jar"/>
     </delete>
     <delete>
