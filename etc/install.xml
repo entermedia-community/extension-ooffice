@@ -32,14 +32,14 @@
   
   <target name="update-dependencies">
 	<mkdir dir="${build}"/>
-	<get src="http://dev.entermediasoftware.com/jenkins/job/extension-ooffice/upgrade.zip" dest="${build}/ROOT.war" />	
+	<get src="http://dev.entermediasoftware.com/jenkins/view/Demo/job/extension-ooffice/lastSuccessfulBuild/artifact/deploy/extension-ooffice.zip" dest="${build}/extension-ooffice.zip" />	
   </target>
     
   <target name="unwar">
   	<mkdir dir="${build}/unpacked"/>
     <unzip dest="${build}/unpacked">
       <fileset dir="${build}">
-        <include name="upgrade.zip"/>
+        <include name="extension-ooffice.zip"/>
       </fileset>
     </unzip>
   </target>
@@ -70,7 +70,12 @@ files.copyFileByMatch( tmp + "/WEB-INF/lib/unoil-*.jar", web + "/lib/");
   <target name="upgrade">
   	<echo>Delete old libs</echo>
 	<mkdir dir="./lib"/>
-    <delete>
+
+  	<delete>
+      <fileset dir="./lib" includes="extension-ooffice**.jar"/>
+    </delete>
+
+  	<delete>
       <fileset dir="./lib" includes="json-**.jar"/>
     </delete>
     <delete>
@@ -93,7 +98,7 @@ files.copyFileByMatch( tmp + "/WEB-INF/lib/unoil-*.jar", web + "/lib/");
     </delete>
     	  
     <copy todir="./lib" overwrite="true" preservelastmodified="true" >
-      <fileset dir="${build}/unpacked/WEB-INF/lib"/>
+      <fileset dir="${build}/unpacked/lib"/>
     </copy> 
 
     <delete dir="${build}"/>
