@@ -40,13 +40,13 @@
 
 	<target name="source"> 
 		<mkdir dir="${deployDir}/builds/" />	
-	  	<zip destfile="${deployDir}/builds/${appname}-${version}-src.zip"  basedir="." excludes="deploy/**, build/**" />
+	  	<zip destfile="${deployDir}/builds/${appname}-${version}-src.zip"  basedir="." excludes="deploy/**, build/**, webapp/WEB-INF/base/**" />
 	  </target>
 	
-	<target name="update-dependencies" depends="clean">
+	<target name="update-dependencies"  >
 	    <mkdir dir="${build}"/>
 	    <mkdir dir="${wardir}/WEB-INF/" />
-		<get dest="${build}/install.xml" src="http://dev.entermediasoftware.com/projects/entermedia-server/install.xml"/>
+		<get dest="${build}/install.xml" src="http://dev.entermediasoftware.com/jenkins/job/entermedia-server/lastSuccessfulBuild/artifact/deploy/install.xml"/>
 		<ant antfile="${build}/install.xml" inheritAll="false" dir="${wardir}/WEB-INF/" target="default"/> 
 	</target>
   
@@ -99,9 +99,9 @@
 		<zip destfile="${deployDir}/builds/${appname}.zip" >			
 			<zipfileset dir="${lib}" prefix="lib" excludes="compile/**"/>
 			
-			<zipfileset dir="${deployDir}/builds/" includes="${appname}-${version}.jar" prefix="lib"/>
-			<zipfileset dir="${base}" prefix="base" />
-			<zipfileset dir="${webinf}/bin" prefix="bin" />
+			<zipfileset dir="${deployDir}/builds/" includes="${appname}-${version}.jar" excludes="**base**" prefix="lib"/>
+			<!-- zipfileset dir="${base}" prefix="base" / -->
+			<!-- zipfileset dir="${webinf}/bin" prefix="bin" / -->
 		</zip>
   </target>    
 	
