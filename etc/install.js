@@ -3,8 +3,9 @@ importPackage( Packages.java.util );
 importPackage( Packages.java.lang );
 importPackage( Packages.com.openedit.modules.update );
 
+String name = "extension-ooffice";
 
-var war = "http://dev.entermediasoftware.com/jenkins/job/extension-ooffice/lastSuccessfulBuild/artifact/deploy/ROOT.war";
+var war = "http://dev.entermediasoftware.com/jenkins/job/" + name + "/lastSuccessfulBuild/artifact/deploy/" + name + ".zip";
 
 var root = moduleManager.getBean("root").getAbsolutePath();
 var web = root + "/WEB-INF";
@@ -12,14 +13,16 @@ var tmp = web + "/tmp";
 
 log.add("1. GET THE LATEST WAR FILE");
 var downloader = new Downloader();
-downloader.download( war, tmp + "/ROOT.war");
+downloader.download( war, tmp + "/" + name + ".zip");
 
 log.add("2. UNZIP WAR FILE");
 var unziper = new ZipUtil();
-unziper.unzip(  tmp + "/ROOT.war",  tmp );
+unziper.unzip(  tmp + "/" + name + ".zip",  tmp );
 
 log.add("3. REPLACE LIBS");
 var files = new FileUtils();
+
+
 files.deleteMatch( web + "/lib/extension-ooffice*.jar");
 files.deleteMatch( web + "/lib/json-*.jar");
 files.deleteMatch( web + "/lib/commond-cli-*.jar");
@@ -37,7 +40,11 @@ files.copyFileByMatch( tmp + "/WEB-INF/lib/jurt-*.jar", web + "/lib/");
 files.copyFileByMatch( tmp + "/WEB-INF/lib/ridl-*.jar", web + "/lib/");
 files.copyFileByMatch( tmp + "/WEB-INF/lib/unoil-*.jar", web + "/lib/");
 
+files.deleteMatch( web + "/bin/linux/aspera/");
+files.copyFileByMatch( tmp + "/bin/linux/aspera", web + "/bin/linux/aspera/");
+
+
 log.add("5. CLEAN UP");
-//files.deleteAll(tmp);
+files.deleteAll(tmp);
 
 log.add("6. UPGRADE COMPLETED");
