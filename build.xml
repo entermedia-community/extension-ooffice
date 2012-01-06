@@ -100,8 +100,8 @@
 			<zipfileset dir="${lib}" prefix="lib" excludes="compile/**"/>
 			
 			<zipfileset dir="${deployDir}/builds/" includes="${appname}-${version}.jar" prefix="lib"/>
-			<zipfileset dir="${base}" prefix="base" />
-			<zipfileset dir="${webinf}/bin" prefix="bin" />
+			<!-- zipfileset dir="${base}" prefix="base" / -->
+			<!-- zipfileset dir="${webinf}/bin" prefix="bin" / -->
 		</zip>
   </target>    
 	
