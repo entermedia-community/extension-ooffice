@@ -45,8 +45,9 @@
 	    <mkdir dir="${wardir}/WEB-INF/" />
 	    
 		<!-- EnterMedia -->
-		<get dest="${wardir}/WEB-INF/install.xml" src="http://dev.openedit.org/anthill/projects/entermedia/install.xml"/>
-		<ant antfile="${wardir}/WEB-INF/install.xml" inheritAll="false" dir="${wardir}/WEB-INF/" target="default"/>
+  	<get dest="${wardir}/WEB-INF/install.xml" src="http://dev.entermediasoftware.com/jenkins/job/entermedia-server/lastSuccessfulBuild/artifact/deploy/install.xml"/>
+  				<ant antfile="${wardir}/WEB-INF/install.xml" inheritAll="false" dir="${wardir}/WEB-INF/" target="default"/> 
+
   </target>
   
   <target name="compile" >
