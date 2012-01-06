@@ -9,6 +9,7 @@ import org.openedit.entermedia.Asset;
 import org.openedit.entermedia.MediaArchive;
 import org.openedit.entermedia.creator.ConvertInstructions;
 import org.openedit.entermedia.creator.ConvertResult;
+import org.openedit.entermedia.creator.MediaCreator;
 import org.openedit.entermedia.scanner.MetadataExtractor;
 import org.openedit.entermedia.scanner.MetadataPdfExtractor;
 
@@ -19,14 +20,14 @@ public class OofficeTextExtractor extends MetadataExtractor
 {
 	private static final Log log = LogFactory.getLog(OofficeTextExtractor.class);
 	protected MetadataPdfExtractor fieldMetadataPdfExtractor;
-	protected OofficeDocumentCreator fieldOofficeDocumentCreator;
+	protected MediaCreator fieldOofficeDocumentCreator;
 	
-	public OofficeDocumentCreator getOofficeDocumentCreator()
+	public MediaCreator getMediaCreator()
 	{
 		return fieldOofficeDocumentCreator;
 	}
 
-	public void setOofficeDocumentCreator(OofficeDocumentCreator inOofficeDocumentCreator)
+	public void setMediaCreator(MediaCreator inOofficeDocumentCreator)
 	{
 		fieldOofficeDocumentCreator = inOofficeDocumentCreator;
 	}
@@ -66,13 +67,13 @@ public class OofficeTextExtractor extends MetadataExtractor
 		ConvertInstructions inst = new ConvertInstructions();
 		inst.setAssetSourcePath(inAsset.getSourcePath());
 		inst.setOutputExtension("pdf");
-		String tmppath = getOofficeDocumentCreator().populateOutputPath(inArchive, inst);
+		String tmppath = getMediaCreator().populateOutputPath(inArchive, inst);
 		
 		Page out = inArchive.getPageManager().getPage(tmppath);
 		if( !out.exists() || out.getContentItem().getLength()==0)
 		{
-			//Create 
-			ConvertResult tmpresult = getOofficeDocumentCreator().convert(inArchive, inAsset, out, inst);
+			//Create PDF
+			ConvertResult tmpresult = getMediaCreator().convert(inArchive, inAsset, out, inst);
 			if( !tmpresult.isOk() )
 			{
 				return false;

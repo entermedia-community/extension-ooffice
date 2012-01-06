@@ -1,10 +1,10 @@
 package org.entermedia.creator;
 
-import org.artofsolving.jodconverter.OfficeDocumentConverter;
 import org.openedit.entermedia.Asset;
 import org.openedit.entermedia.BaseEnterMediaTest;
 import org.openedit.entermedia.creator.ConvertInstructions;
 import org.openedit.entermedia.creator.ConvertResult;
+import org.openedit.entermedia.creator.MediaCreator;
 
 import com.openedit.page.Page;
 
@@ -20,7 +20,7 @@ public class DocumentCreatorTest extends BaseEnterMediaTest
 		asset.setProperty("fileformat", "doc");
 		inst.setAssetSourcePath(asset.getSourcePath());
 		inst.setOutputExtension("pdf");
-		OofficeDocumentCreator creator = (OofficeDocumentCreator)getFixture().getModuleManager().getBean("oofficeDocumentCreator");
+		MediaCreator creator = (MediaCreator)getFixture().getModuleManager().getBean("oofficeDocumentCreator");
 		String tmppath = creator.populateOutputPath(getMediaArchive(), inst);
 		
 		Page out = getFixture().getPageManager().getPage(tmppath);

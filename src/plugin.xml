@@ -31,17 +31,25 @@
 	
 	<bean id="oofficeTextExtractor" class="org.entermedia.scanner.OofficeTextExtractor" >
 		<property name="metadataPdfExtractor"><ref bean="pdfExtractor" /></property>
-		<property name="oofficeDocumentCreator"><ref bean="oofficeDocumentCreator" /></property>
+		<property name="mediaCreator"><ref bean="oofficeDocumentCreator" /></property>
 	</bean>
-	
-	<bean id="oofficeDocumentCreator" class="org.entermedia.creator.OofficeDocumentCreator">
+
+<bean id="oofficeDocumentCreator" class="org.openedit.entermedia.creator.GroovyScriptedCreator">
+		<property name="scriptManager">
+			<ref bean="scriptManager" />
+		</property>
 		<property name="pageManager">
 			<ref bean="pageManager" />
 		</property>
 		<property name="exec">
 			<ref bean="exec" />
 		</property>
+		<property name="moduleManager">
+			<ref bean="moduleManager" />
+		</property>
+		<property name="scriptName"><value>ooffice</value></property>
 	</bean>
+	
 	
 </beans>
 	

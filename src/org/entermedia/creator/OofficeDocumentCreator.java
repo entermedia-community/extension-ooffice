@@ -13,6 +13,7 @@ import org.openedit.entermedia.creator.BaseCreator;
 import org.openedit.entermedia.creator.ConvertInstructions;
 import org.openedit.entermedia.creator.ConvertResult;
 
+import com.openedit.OpenEditException;
 import com.openedit.page.Page;
 
 public class OofficeDocumentCreator extends BaseCreator
@@ -36,8 +37,17 @@ public class OofficeDocumentCreator extends BaseCreator
 	{
 		if (fieldOfficeManager == null)
 		{
+			String path = "/usr/lib/libreoffice";
+			if(new File(path).exists() == false )
+			{
+				path = "/usr/lib/openoffice";
+				if(new File(path).exists() == false )
+				{
+					throw new OpenEditException("Could not find path to open office");
+				}
+			}
 			OfficeManager temp = new DefaultOfficeManagerConfiguration()
-		      .setOfficeHome("/usr/lib/openoffice")
+		      .setOfficeHome(path)
 //		      .setConnectionProtocol(OfficeConnectionProtocol.PIPE)
 //		      .setPipeNames("office1", "office2")
 		      .setTaskExecutionTimeout(30000L)
