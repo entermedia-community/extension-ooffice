@@ -3,7 +3,7 @@ importPackage( Packages.java.util );
 importPackage( Packages.java.lang );
 importPackage( Packages.com.openedit.modules.update );
 
-String name = "extension-ooffice";
+var name = "extension-ooffice";
 
 var war = "http://dev.entermediasoftware.com/jenkins/job/" + name + "/lastSuccessfulBuild/artifact/deploy/" + name + ".zip";
 
@@ -39,9 +39,6 @@ files.copyFileByMatch( tmp + "/WEB-INF/lib/juh-*.jar", web + "/lib/");
 files.copyFileByMatch( tmp + "/WEB-INF/lib/jurt-*.jar", web + "/lib/");
 files.copyFileByMatch( tmp + "/WEB-INF/lib/ridl-*.jar", web + "/lib/");
 files.copyFileByMatch( tmp + "/WEB-INF/lib/unoil-*.jar", web + "/lib/");
-
-files.deleteMatch( web + "/bin/linux/aspera/");
-files.copyFileByMatch( tmp + "/bin/linux/aspera", web + "/bin/linux/aspera/");
 
 
 log.add("5. CLEAN UP");
