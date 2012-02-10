@@ -32,15 +32,15 @@ files.deleteMatch( web + "/lib/jurt-*.jar");
 files.deleteMatch( web + "/lib/ridl-*.jar");
 files.deleteMatch( web + "/lib/unoil-*.jar");
 
-files.copyFileByMatch( tmp + "/WEB-INF/lib/extension-ooffice*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/WEB-INF/lib/common-cli*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/WEB-INF/lib/jodconverter-*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/WEB-INF/lib/juh-*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/WEB-INF/lib/jurt-*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/WEB-INF/lib/ridl-*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/WEB-INF/lib/unoil-*.jar", web + "/lib/");
+files.copyFileByMatch( tmp + "/lib/extension-ooffice*.jar", web + "/lib/");
+files.copyFileByMatch( tmp + "/lib/common-cli*.jar", web + "/lib/");
+files.copyFileByMatch( tmp + "/lib/jodconverter-*.jar", web + "/lib/");
+files.copyFileByMatch( tmp + "/lib/juh-*.jar", web + "/lib/");
+files.copyFileByMatch( tmp + "/lib/jurt-*.jar", web + "/lib/");
+files.copyFileByMatch( tmp + "/lib/ridl-*.jar", web + "/lib/");
+files.copyFileByMatch( tmp + "/lib/unoil-*.jar", web + "/lib/");
 
-log.add("Copy " +  tmp + "/WEB-INF/lib/extension-ooffice*.jar" + " -> "  + web + "/lib/");
+log.add("Copy " +  tmp + "/lib/extension-ooffice*.jar" + " -> "  + web + "/lib/");
 
 
 log.add("5. CLEAN UP");
