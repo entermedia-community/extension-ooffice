@@ -40,6 +40,8 @@ files.copyFileByMatch( tmp + "/WEB-INF/lib/jurt-*.jar", web + "/lib/");
 files.copyFileByMatch( tmp + "/WEB-INF/lib/ridl-*.jar", web + "/lib/");
 files.copyFileByMatch( tmp + "/WEB-INF/lib/unoil-*.jar", web + "/lib/");
 
+log.add("Copy " +  tmp + "/WEB-INF/lib/extension-ooffice*.jar" + " -> "  + web + "/lib/");
+
 
 log.add("5. CLEAN UP");
 files.deleteAll(tmp);
