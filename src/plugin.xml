@@ -20,6 +20,7 @@
 				<ref bean="pdfExtractor" />
 				<ref bean="oofficeTextExtractor" />
 				<ref bean="exiftoolMetadataExtractor" />
+				<ref bean="ffmpegMetadataExtractor" />
 			</list>
 		</property>
 	</bean>
