@@ -1,10 +1,11 @@
 package org.entermedia.scanner;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.Collection;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.entermedia.creator.OofficeDocumentCreator;
 import org.openedit.entermedia.Asset;
 import org.openedit.entermedia.MediaArchive;
 import org.openedit.entermedia.creator.ConvertInstructions;
@@ -18,6 +19,8 @@ import com.openedit.util.PathUtilities;
 
 public class OofficeTextExtractor extends MetadataExtractor
 {
+	public static final Collection FORMATS = Arrays.asList(new String[] {"doc","docx","rtf","ppt","wps","odt","html","xml","csv", "xls", "xlsx"});
+
 	private static final Log log = LogFactory.getLog(OofficeTextExtractor.class);
 	protected MetadataPdfExtractor fieldMetadataPdfExtractor;
 	protected MediaCreator fieldOofficeDocumentCreator;
@@ -54,12 +57,16 @@ public class OofficeTextExtractor extends MetadataExtractor
 		{
 			type = type.toLowerCase();
 		}
-		if (type != null && type.equals("pdf"))
+		if( type == null )
+		{
+			return false;
+		}
+		if ( type.equals("pdf"))
 		{
 			return false; //PDF's are already being extracted
 		}
-		String format = inArchive.getMediaRenderType(type);
-		if( !format.equals("document"))
+		
+		if( !FORMATS.contains(type) )
 		{
 			return false;
 		}
