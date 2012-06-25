@@ -89,6 +89,13 @@ public class OofficeTextExtractor extends MetadataExtractor
 		//now use the PDF extractor
 		File pdf = new File( out.getContentItem().getAbsolutePath() );
 		getMetadataPdfExtractor().extractData(inArchive, pdf, inAsset);
+		
+//		//now get the page info out of the PDF?
+//		Asset tmp = inArchive.createAsset("tmp/" + inAsset.getSourcePath());
+//		getPdfMetadataExtractor().extractData(inArchive, pdf, tmp);
+//		
+//		inAsset.setProperty(type, tmppath)
+		
 		return true;
 	}
 }
