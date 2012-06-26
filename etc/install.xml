@@ -32,7 +32,7 @@
   
   <target name="update-dependencies">
 	<mkdir dir="${build}"/>
-	<get src="http://dev.entermediasoftware.com/jenkins/view/Demo/job/extension-ooffice/lastSuccessfulBuild/artifact/deploy/extension-ooffice.zip" dest="${build}/extension-ooffice.zip" />	
+	<get src="http://dev.entermediasoftware.com/jenkins/job/@BRANCH@extension-ooffice/lastSuccessfulBuild/artifact/deploy/extension-ooffice.zip" dest="${build}/extension-ooffice.zip" />	
   </target>
     
   <target name="unwar">
