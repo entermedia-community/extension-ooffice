@@ -18,6 +18,9 @@
     <property name="wardir" location="${build}/wartmp"/>
     <property name="webapp" location="${basedir}/webapp"/>
 	<property name="webinf" location="${webapp}/WEB-INF"/>
+	<property name="branch" value="" />
+	<property name="majorversion" value="7" />
+	
 	<!-- 
 		========================================================================
 		Anthill build server properties.  These properties will be passed in
@@ -29,7 +32,7 @@
 	--> 
 	<property environment="env" />
 
-  	<property name="version"  value="8.${env.BUILD_NUMBER}"/>
+	<property name="version"  value="${majorversion}.${env.BUILD_NUMBER}"/>
   	<property name="deployDir" location="deploy"/>
   	
   	<!-- A convenience variable for documentation output -->
@@ -48,7 +51,8 @@
 	<target name="update-dependencies"  depends="clean">
 	    <mkdir dir="${build}"/>
 	    <mkdir dir="${wardir}/WEB-INF/" />
-		<get dest="${build}/install.xml" src="http://dev.entermediasoftware.com/jenkins/job/entermedia-server/lastSuccessfulBuild/artifact/deploy/install.xml"/>
+		
+		<get dest="${build}/install.xml" src="http://dev.entermediasoftware.com/jenkins/job/${branch}entermedia-server/lastSuccessfulBuild/artifact/deploy/install.xml"/>
 		<ant antfile="${build}/install.xml" inheritAll="false" dir="${wardir}/WEB-INF/" target="default"/> 
 	</target>
   
@@ -170,13 +174,21 @@
 		 	<copy file="${deployDir}/builds/${appname}.zip" overwrite="true"
 		        tofile="${deployDir}/${appname}.zip"/>
 		
+			<copy overwrite="true"  file="${etc}/install.js" 
+				    tofile="${deployDir}/install.js">
+				 		 <filterset>
+				 		      <filter token="BRANCH" value="${branch}"/>
+				 		    </filterset>
+		 	</copy>	
+		 	<copy file="${etc}/install.xml" overwrite="true"
+			        tofile="${deployDir}/install.xml">
+			 <filterset>
+				 		      <filter token="BRANCH" value="${branch}"/>
+						 		    </filterset>
+			 		</copy>
 
-		 	<copy file="${etc}/install.js" overwrite="true"
-		        tofile="${deployDir}/install.js"/>		
-
-
-		<copy file="${etc}/install.xml" overwrite="true" tofile="${deployDir}/install.xml" />
-
+		
+		
 			
 		</target>
 	  

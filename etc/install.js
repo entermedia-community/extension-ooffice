@@ -5,7 +5,7 @@ importPackage( Packages.com.openedit.modules.update );
 
 var name = "extension-ooffice";
 
-var war = "http://dev.entermediasoftware.com/jenkins/job/" + name + "/lastSuccessfulBuild/artifact/deploy/" + name + ".zip";
+var war = "http://dev.entermediasoftware.com/jenkins/job/@BRANCH@" + name + "/lastSuccessfulBuild/artifact/deploy/" + name + ".zip";
 
 var root = moduleManager.getBean("root").getAbsolutePath();
 var web = root + "/WEB-INF";
@@ -24,21 +24,8 @@ var files = new FileUtils();
 
 
 files.deleteMatch( web + "/lib/extension-ooffice*.jar");
-files.deleteMatch( web + "/lib/json-*.jar");
-files.deleteMatch( web + "/lib/commond-cli-*.jar");
-files.deleteMatch( web + "/lib/jodconverter-*.jar");
-files.deleteMatch( web + "/lib/juh-*.jar");
-files.deleteMatch( web + "/lib/jurt-*.jar");
-files.deleteMatch( web + "/lib/ridl-*.jar");
-files.deleteMatch( web + "/lib/unoil-*.jar");
 
 files.copyFileByMatch( tmp + "/lib/extension-ooffice*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/lib/common-cli*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/lib/jodconverter-*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/lib/juh-*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/lib/jurt-*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/lib/ridl-*.jar", web + "/lib/");
-files.copyFileByMatch( tmp + "/lib/unoil-*.jar", web + "/lib/");
 
 log.add("Copy " +  tmp + "/lib/extension-ooffice*.jar" + " -> "  + web + "/lib/");
 
