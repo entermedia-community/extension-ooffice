@@ -19,7 +19,7 @@ import com.openedit.util.PathUtilities;
 
 public class OofficeTextExtractor extends MetadataExtractor
 {
-	public static final Collection FORMATS = Arrays.asList(new String[] {"doc","docx","rtf","ppt","wps","odt","html","xml","csv", "xls", "xlsx"});
+	public static final Collection FORMATS = Arrays.asList(new String[] {"doc","docx","rtf","ppt","pptx","wps","odt","html","xml","csv", "xls", "xlsx"});
 
 	private static final Log log = LogFactory.getLog(OofficeTextExtractor.class);
 	protected MetadataPdfExtractor fieldMetadataPdfExtractor;
@@ -74,9 +74,11 @@ public class OofficeTextExtractor extends MetadataExtractor
 		ConvertInstructions inst = new ConvertInstructions();
 		inst.setAssetSourcePath(inAsset.getSourcePath());
 		inst.setOutputExtension("pdf");
-		String tmppath = getMediaCreator().populateOutputPath(inArchive, inst);
+		String outputpage = "/WEB-INF/data/"+ inArchive.getCatalogId() + "/generated/" + inAsset.getSourcePath() + "/document.pdf";
 		
-		Page out = inArchive.getPageManager().getPage(tmppath);
+		//String tmppath = getMediaCreator().populateOutputPath(inArchive, inst);
+		
+		Page out = inArchive.getPageManager().getPage(outputpage);
 		if( !out.exists() || out.getContentItem().getLength()==0)
 		{
 			//Create PDF
