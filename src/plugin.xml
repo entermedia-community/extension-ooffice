@@ -29,22 +29,6 @@
 		<property name="metadataPdfExtractor"><ref bean="pdfExtractor" /></property>
 		<property name="mediaCreator"><ref bean="oofficeDocumentCreator" /></property>
 	</bean>
-
-<bean id="oofficeDocumentCreator" class="org.openedit.entermedia.creator.GroovyScriptedCreator">
-		<property name="scriptManager">
-			<ref bean="scriptManager" />
-		</property>
-		<property name="pageManager">
-			<ref bean="pageManager" />
-		</property>
-		<property name="exec">
-			<ref bean="exec" />
-		</property>
-		<property name="moduleManager">
-			<ref bean="moduleManager" />
-		</property>
-		<property name="scriptName"><value>oofficeDocument</value></property>
-	</bean>
 	
 	
 </beans>
