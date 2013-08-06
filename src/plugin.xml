@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
-<beans>
+<beans  default-lazy-init="true">
 
 	<bean id="imagePreProcessors" class="java.util.ArrayList">
 	    <constructor-arg>
@@ -28,22 +28,6 @@
 	<bean id="oofficeTextExtractor" class="org.entermedia.scanner.OofficeTextExtractor" >
 		<property name="metadataPdfExtractor"><ref bean="pdfExtractor" /></property>
 		<property name="mediaCreator"><ref bean="oofficeDocumentCreator" /></property>
-	</bean>
-
-<bean id="oofficeDocumentCreator" class="org.openedit.entermedia.creator.GroovyScriptedCreator">
-		<property name="scriptManager">
-			<ref bean="scriptManager" />
-		</property>
-		<property name="pageManager">
-			<ref bean="pageManager" />
-		</property>
-		<property name="exec">
-			<ref bean="exec" />
-		</property>
-		<property name="moduleManager">
-			<ref bean="moduleManager" />
-		</property>
-		<property name="scriptName"><value>oofficeDocument</value></property>
 	</bean>
 	
 	
