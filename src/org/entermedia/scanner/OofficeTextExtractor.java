@@ -13,6 +13,7 @@ import org.openedit.entermedia.creator.ConvertResult;
 import org.openedit.entermedia.creator.MediaCreator;
 import org.openedit.entermedia.scanner.MetadataExtractor;
 import org.openedit.entermedia.scanner.MetadataPdfExtractor;
+import org.openedit.repository.ContentItem;
 
 import com.openedit.page.Page;
 import com.openedit.util.PathUtilities;
@@ -45,7 +46,7 @@ public class OofficeTextExtractor extends MetadataExtractor
 		fieldMetadataPdfExtractor = inMetadataPdfExtractor;
 	}
 
-	public boolean extractData(MediaArchive inArchive, File inputFile, Asset inAsset)
+	public boolean extractData(MediaArchive inArchive, ContentItem inputFile, Asset inAsset)
 	{
 		String type = PathUtilities.extractPageType(inputFile.getPath());
 		if (type == null || "data".equals(type.toLowerCase()))
@@ -89,8 +90,7 @@ public class OofficeTextExtractor extends MetadataExtractor
 			}
 		}	
 		//now use the PDF extractor
-		File pdf = new File( out.getContentItem().getAbsolutePath() );
-		getMetadataPdfExtractor().extractData(inArchive, pdf, inAsset);
+		getMetadataPdfExtractor().extractData(inArchive, out.getContentItem(), inAsset);
 		
 //		//now get the page info out of the PDF?
 //		Asset tmp = inArchive.createAsset("tmp/" + inAsset.getSourcePath());

@@ -15,6 +15,10 @@
 
 		
 	<bean id="metaDataReader" class="org.openedit.entermedia.scanner.MetaDataReader">
+		<property name="pageManager">
+			<ref bean="pageManager" />
+		</property>
+	
 		<property name="metadataExtractors">
 			<list>
 				<ref bean="pdfExtractor" />
