@@ -24,10 +24,11 @@ var files = new FileUtils();
 
 
 files.deleteMatch( web + "/lib/extension-ooffice*.jar");
+files.deleteMatch( web + "/lib/dev_extension-ooffice*.jar");
 
-files.copyFileByMatch( tmp + "/lib/extension-ooffice*.jar", web + "/lib/");
+files.copyFileByMatch( tmp + "/lib/@BRANCH@extension-ooffice*.jar", web + "/lib/");
 
-log.add("Copy " +  tmp + "/lib/extension-ooffice*.jar" + " -> "  + web + "/lib/");
+log.add("Copy " +  tmp + "/lib/@BRANCH@extension-ooffice*.jar" + " -> "  + web + "/lib/");
 
 
 log.add("5. CLEAN UP");
