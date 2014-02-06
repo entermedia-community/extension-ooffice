@@ -75,9 +75,7 @@ files.copyFileByMatch( tmp + "/WEB-INF/lib/unoil-*.jar", web + "/lib/");
       <fileset dir="./lib" includes="extension-ooffice**.jar"/>
     </delete>
 
-  	<delete>
-      <fileset dir="./lib" includes="json-**.jar"/>
-    </delete>
+  	
     <delete>
       <fileset dir="./lib" includes="commond-cli-**.jar"/>
     </delete>
