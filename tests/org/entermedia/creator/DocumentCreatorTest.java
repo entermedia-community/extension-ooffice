@@ -1,12 +1,11 @@
 package org.entermedia.creator;
 
-import org.openedit.entermedia.Asset;
-import org.openedit.entermedia.BaseEnterMediaTest;
-import org.openedit.entermedia.creator.ConvertInstructions;
-import org.openedit.entermedia.creator.ConvertResult;
-import org.openedit.entermedia.creator.MediaCreator;
-
-import com.openedit.page.Page;
+import org.entermediadb.asset.Asset;
+import org.entermediadb.asset.BaseEnterMediaTest;
+import org.entermediadb.asset.creator.ConvertInstructions;
+import org.entermediadb.asset.creator.ConvertResult;
+import org.entermediadb.asset.creator.MediaCreator;
+import org.openedit.page.Page;
 
 public class DocumentCreatorTest extends BaseEnterMediaTest
 {

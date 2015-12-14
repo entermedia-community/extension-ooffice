@@ -140,7 +140,7 @@
             <include name="*.jar"/>
          </fileset>
     </classpath>
-  		<test name="org.openedit.entermedia.smartjog.AllTests" outfile="./junit" todir="${deployDir}">
+  		<test name="org.entermediadb.asset.smartjog.AllTests" outfile="./junit" todir="${deployDir}">
   			<formatter type="xml"/>
   		</test>
   	</junit>

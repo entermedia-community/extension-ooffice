@@ -13,7 +13,7 @@
 	</bean>
 
 		
-	<bean id="metaDataReader" class="org.openedit.entermedia.scanner.MetaDataReader">
+	<bean id="metaDataReader" class="org.entermediadb.asset.scanner.MetaDataReader">
 		<property name="pageManager">
 			<ref bean="pageManager" />
 		</property>
@@ -28,7 +28,7 @@
 		</property>
 	</bean>
 	
-	<bean id="oofficeTextExtractor" class="org.entermedia.scanner.OofficeTextExtractor" >
+	<bean id="oofficeTextExtractor" class="org.entermediadb.scanner.OofficeTextExtractor" >
 		<property name="metadataPdfExtractor"><ref bean="pdfExtractor" /></property>
 		<property name="mediaCreator"><ref bean="oofficeDocumentCreator" /></property>
 	</bean>

@@ -6,17 +6,16 @@ import java.util.Collection;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openedit.entermedia.Asset;
-import org.openedit.entermedia.MediaArchive;
-import org.openedit.entermedia.creator.ConvertInstructions;
-import org.openedit.entermedia.creator.ConvertResult;
-import org.openedit.entermedia.creator.MediaCreator;
-import org.openedit.entermedia.scanner.MetadataExtractor;
-import org.openedit.entermedia.scanner.MetadataPdfExtractor;
+import org.entermediadb.asset.Asset;
+import org.entermediadb.asset.MediaArchive;
+import org.entermediadb.asset.creator.ConvertInstructions;
+import org.entermediadb.asset.creator.ConvertResult;
+import org.entermediadb.asset.creator.MediaCreator;
+import org.entermediadb.asset.scanner.MetadataExtractor;
+import org.entermediadb.asset.scanner.MetadataPdfExtractor;
+import org.openedit.page.Page;
 import org.openedit.repository.ContentItem;
-
-import com.openedit.page.Page;
-import com.openedit.util.PathUtilities;
+import org.openedit.util.PathUtilities;
 
 public class OofficeTextExtractor extends MetadataExtractor
 {
