@@ -8,9 +8,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.entermediadb.asset.Asset;
 import org.entermediadb.asset.MediaArchive;
-import org.entermediadb.asset.creator.ConvertInstructions;
-import org.entermediadb.asset.creator.ConvertResult;
-import org.entermediadb.asset.creator.MediaCreator;
+import org.entermediadb.asset.convert.ConvertInstructions;
+import org.entermediadb.asset.convert.ConvertResult;
+import org.entermediadb.asset.convert.MediaConverter;
 import org.entermediadb.asset.scanner.MetadataExtractor;
 import org.entermediadb.asset.scanner.MetadataPdfExtractor;
 import org.openedit.page.Page;
@@ -23,14 +23,14 @@ public class OofficeTextExtractor extends MetadataExtractor
 
 	private static final Log log = LogFactory.getLog(OofficeTextExtractor.class);
 	protected MetadataPdfExtractor fieldMetadataPdfExtractor;
-	protected MediaCreator fieldOofficeDocumentCreator;
+	protected MediaConverter fieldOofficeDocumentCreator;
 	
-	public MediaCreator getMediaCreator()
+	public MediaConverter getMediaCreator()
 	{
 		return fieldOofficeDocumentCreator;
 	}
 
-	public void setMediaCreator(MediaCreator inOofficeDocumentCreator)
+	public void setMediaCreator(MediaConverter inOofficeDocumentCreator)
 	{
 		fieldOofficeDocumentCreator = inOofficeDocumentCreator;
 	}
