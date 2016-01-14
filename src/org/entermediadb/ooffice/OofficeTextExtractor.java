@@ -1,6 +1,5 @@
-package org.entermedia.scanner;
+package org.entermediadb.ooffice;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -8,12 +7,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.entermediadb.asset.Asset;
 import org.entermediadb.asset.MediaArchive;
+import org.entermediadb.asset.convert.ConversionManager;
 import org.entermediadb.asset.convert.ConvertInstructions;
 import org.entermediadb.asset.convert.ConvertResult;
-import org.entermediadb.asset.convert.MediaConverter;
+import org.entermediadb.asset.convert.MediaTranscoder;
 import org.entermediadb.asset.scanner.MetadataExtractor;
 import org.entermediadb.asset.scanner.MetadataPdfExtractor;
-import org.openedit.page.Page;
 import org.openedit.repository.ContentItem;
 import org.openedit.util.PathUtilities;
 
@@ -23,16 +22,16 @@ public class OofficeTextExtractor extends MetadataExtractor
 
 	private static final Log log = LogFactory.getLog(OofficeTextExtractor.class);
 	protected MetadataPdfExtractor fieldMetadataPdfExtractor;
-	protected MediaConverter fieldOofficeDocumentCreator;
+	protected MediaTranscoder fieldOofficeDocumentTranscoder;
 	
-	public MediaConverter getMediaCreator()
+	public MediaTranscoder getOofficeDocumentTranscoder()
 	{
-		return fieldOofficeDocumentCreator;
+		return fieldOofficeDocumentTranscoder;
 	}
 
-	public void setMediaCreator(MediaConverter inOofficeDocumentCreator)
+	public void setOofficeDocumentTranscoder(MediaTranscoder inOofficeDocumentTranscoder)
 	{
-		fieldOofficeDocumentCreator = inOofficeDocumentCreator;
+		fieldOofficeDocumentTranscoder = inOofficeDocumentTranscoder;
 	}
 
 	public MetadataPdfExtractor getMetadataPdfExtractor()
@@ -71,25 +70,26 @@ public class OofficeTextExtractor extends MetadataExtractor
 			return false;
 		}
 		//ooffice can create a PDF then we can pull the size and text from it
-		ConvertInstructions inst = new ConvertInstructions();
+		ConversionManager manager = inArchive.getTranscodeTools().getManagerByTranscoder("ooffice");
+		ConvertInstructions inst = manager.createInstructions();
 		inst.setAssetSourcePath(inAsset.getSourcePath());
 		inst.setOutputExtension("pdf");
 		String outputpage = "/WEB-INF/data/"+ inArchive.getCatalogId() + "/generated/" + inAsset.getSourcePath() + "/document.pdf";
 		
-		//String tmppath = getMediaCreator().populateOutputPath(inArchive, inst);
-		
-		Page out = inArchive.getPageManager().getPage(outputpage);
-		if( !out.exists() || out.getContentItem().getLength()==0)
+		ContentItem out = inArchive.getContent( outputpage);
+		if( !out.exists() || out.getLength()==0)
 		{
 			//Create PDF
-			ConvertResult tmpresult = getMediaCreator().convert(inArchive, inAsset, out, inst);
+			inst.setInputFile(inputFile);
+			inst.setOutputFile(out);
+			ConvertResult tmpresult = manager.transcode(inst);
 			if( !tmpresult.isOk() )
 			{
 				return false;
 			}
 		}	
 		//now use the PDF extractor
-		getMetadataPdfExtractor().extractData(inArchive, out.getContentItem(), inAsset);
+		getMetadataPdfExtractor().extractData(inArchive, out, inAsset);
 		
 //		//now get the page info out of the PDF?
 //		Asset tmp = inArchive.createAsset("tmp/" + inAsset.getSourcePath());
