@@ -1,7 +1,9 @@
-importPackage( Packages.com.openedit.util );
+importPackage( Packages.org.openedit.util );
 importPackage( Packages.java.util );
 importPackage( Packages.java.lang );
-importPackage( Packages.com.openedit.modules.update );
+importPackage( Packages.java.io );
+importPackage( Packages.org.entermediadb.modules.update );
+
 
 var name = "extension-ooffice";
 
@@ -25,6 +27,10 @@ var files = new FileUtils();
 
 files.deleteMatch( web + "/lib/extension-ooffice*.jar");
 files.deleteMatch( web + "/lib/dev_extension-ooffice*.jar");
+files.deleteMatch( web + "/lib/em9_extension-ooffice*.jar");
+files.deleteAll( root + "/WEB-INF/base/oofice");
+
+files.copyFiles( tmp + "/WEB-INF/base/oofice", root + "/WEB-INF/base/oofice");
 
 files.copyFileByMatch( tmp + "/lib/@BRANCH@extension-ooffice*.jar", web + "/lib/");
 

@@ -19,7 +19,7 @@
 	
 	</bean>
 	
-	<bean id="oofficeTranscoder" class="org.entermediadb.ooffice.OofficeTranscoder" >
+	<bean id="oofficeTranscoder" class="org.entermediadb.ooffice.OofficeDocumentTranscoder" >
 		<property name="pageManager"><ref bean="pageManager" /></property>
 		<property name="exec"><ref bean="exec" /></property>
 	</bean>
