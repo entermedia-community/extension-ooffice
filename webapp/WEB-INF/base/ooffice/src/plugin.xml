@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<beans  default-lazy-init="true">
+<beans projectname="ooffice" dependson="server" default-lazy-init="true">
 <!-- 
 	<bean id="imagePreProcessors" class="java.util.ArrayList">
 	    <constructor-arg>
@@ -12,7 +12,7 @@
 	    </constructor-arg>
 	</bean>
 -->
-   <bean id="oofficeConversionManager" class="org.entermediadb.ooffice.OofficeConversionManager" scope="prototype">
+   <bean id="oofficeConversionManager" class="org.entermediadb.asset.convert.managers.DocumentConversionManager" scope="prototype">
 		<property name="mediaTranscoder">
 			<ref bean="oofficeTranscoder" />
 		</property>
@@ -24,6 +24,13 @@
 		<property name="exec"><ref bean="exec" /></property>
 	</bean>
 	
+	<bean id="documentConversionManager" class="org.entermediadb.asset.convert.managers.DocumentConversionManager" scope="prototype">
+		<property name="mediaTranscoder">
+			<ref bean="oofficeTranscoder" />
+		</property>
+	</bean>
+
+
 		
 	<bean id="metaDataReader" class="org.entermediadb.asset.scanner.MetaDataReader">
 		<property name="pageManager">
